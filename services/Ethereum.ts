@@ -1,11 +1,9 @@
 import { recoverPersonalSignature } from "@metamask/eth-sig-util"
 import { ethers } from "ethers"
-import { defaultWalletWeiAmount } from "../consts/env"
 import { InsufficientFundsError } from "../errors/InsufficientFundsError"
 import { NonceExpiredError } from "../errors/NonceExpiredError"
-import { NonEmptyWalletError } from "../errors/NonEmptyWalletError"
 import { SignatureMismatchError } from "../errors/SignatureMismatchError"
-import { WalletAlreadyFunded } from "../errors/WalletAlreadyFunded"
+import { UnwhitelistedWallet } from "../errors/UnwhitelistedWallet"
 import { Blockchain } from "../interfaces/Blockchain"
 import { Nonce } from "../interfaces/Nonce"
 import { TransactionHistory } from "../interfaces/TransactionHistory"
@@ -67,26 +65,9 @@ export class Ethereum implements Blockchain {
   }
 
   async isEligible(address: string): Promise<void> {
-    // Privileged wallets aren’t checked for eligibility
-    if (this.classificationService.isPrivileged(address)) {
-      return
-    }
-
-    const balance = await this.wallet.provider.getBalance(address)
-
-    if (balance.gt(defaultWalletWeiAmount)) {
-      throw new NonEmptyWalletError()
-    }
-
-    // Added after the video was released to prevent user from draining system's wallet
-    if (this.transactionHistoryService === undefined) {
-      return
-    }
-
-    const hasReceivedTokens = await this.transactionHistoryService.hasReceivedTokens(address)
-
-    if (hasReceivedTokens) {
-      throw new WalletAlreadyFunded()
+    if (!this.classificationService.isPrivileged(address)) {
+      console.log('aaa')
+      throw new UnwhitelistedWallet()
     }
   }
 }
