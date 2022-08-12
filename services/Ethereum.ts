@@ -66,7 +66,6 @@ export class Ethereum implements Blockchain {
 
   async isEligible(address: string): Promise<void> {
     if (!this.classificationService.isPrivileged(address)) {
-      console.log('aaa')
       throw new UnwhitelistedWallet()
     }
   }
