@@ -1,6 +1,7 @@
 import { normalizeAddress } from "../utils/ethAddressUtils"
 
 const rawPrivilegedWallets = [
+  "0x61C808D82A3Ac53231750daDc13c777b59310bD9",
   "0xd5e73f9199E67b6Ff8DFACE1767A1BDAdf1A7242",
   "0xbd9003EAF07503C80dBdfe11a787c678598Ab868",
   "0x0BE3b5Fb97A02Ad6caC9930Ea1ef684063080316",
