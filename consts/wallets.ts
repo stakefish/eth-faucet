@@ -12,7 +12,8 @@ const rawPrivilegedWallets = [
   "http404.eth",
   "0xaD2143748ce26940952B221775f5D683E4572f7B",
   "0x1718724AeC24b2Ef11c60754DC99272E5b9d14FF",
-  "0x91099E400cfaa9aA222eD6aA998aF7Df25817074"
+  "0x91099E400cfaa9aA222eD6aA998aF7Df25817074",
+  "0x1e0285E4E81098b2184cbA1f903Ab62dcEeE81f8"
 ]
 
 export const privilegedWallets = rawPrivilegedWallets.map(normalizeAddress)
