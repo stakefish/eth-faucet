@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     const { address, message, signature }: ClaimParams = req.body
 
     await ethereum.verifyMessage(address, message, signature)
-    if (isNil(getCookie("stakefish_referer"))) {
+    if (isNil(getCookie("stakefish_referer", { req, res }))) {
       await ethereum.isEligible(address)
     }
     await ethereum.fundWallet(address)
