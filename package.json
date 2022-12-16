@@ -18,6 +18,7 @@
     "@mui/material": "latest",
     "@usedapp/core": "latest",
     "axios": "latest",
+    "cookies-next": "latest",
     "ethers": "latest",
     "ioredis": "latest",
     "lodash": "latest",

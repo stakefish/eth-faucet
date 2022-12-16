@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { getCookie } from "cookies-next"
 import { InsufficientFundsError } from "../../errors/InsufficientFundsError"
 import { NonceExpiredError } from "../../errors/NonceExpiredError"
 import { NonEmptyWalletError } from "../../errors/NonEmptyWalletError"
@@ -7,6 +8,7 @@ import { UnwhitelistedWallet } from "../../errors/UnwhitelistedWallet"
 import { WalletAlreadyFunded } from "../../errors/WalletAlreadyFunded"
 import { DefaultResponse } from "../../interfaces/Response"
 import { bootstrapEthereum } from "../../utils/bootstrapEthereum"
+import { isNil } from "lodash"
 
 type ClaimParams = {
   address: string
@@ -21,7 +23,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     const { address, message, signature }: ClaimParams = req.body
 
     await ethereum.verifyMessage(address, message, signature)
-    await ethereum.isEligible(address)
+    if (isNil(getCookie("stakefish_referer", { req, res }))) {
+      await ethereum.isEligible(address)
+    }
     await ethereum.fundWallet(address)
 
     return res.status(200).json({ status: "ok" })
