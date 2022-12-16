@@ -2151,7 +2151,7 @@ axios@latest:
   languageName: node
   linkType: hard
 
-"cookies-next@npm:^2.1.1":
+"cookies-next@npm:latest":
   version: 2.1.1
   resolution: "cookies-next@npm:2.1.1"
   dependencies:
@@ -2785,7 +2785,7 @@ axios@latest:
     "@types/react-dom": 18.0.4
     "@usedapp/core": latest
     axios: latest
-    cookies-next: ^2.1.1
+    cookies-next: latest
     eslint: 8.16.0
     eslint-config-next: 12.1.6
     ethers: latest
