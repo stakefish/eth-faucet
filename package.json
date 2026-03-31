@@ -17,7 +17,7 @@
     "@mui/lab": "latest",
     "@mui/material": "latest",
     "@usedapp/core": "latest",
-    "axios": "latest",
+    "axios": "1.6.5",
     "ethers": "latest",
     "ioredis": "latest",
     "lodash": "latest",
